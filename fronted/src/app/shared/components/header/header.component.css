@@ -1,0 +1,29 @@
+.navbar,
+.page-options,
+.user-options,
+.options {
+    display: flex;
+    align-items: center;
+}
+
+.navbar {
+    justify-content: space-between;
+    font-size: 22px;
+    padding: 0 20px;
+
+}
+
+.navbar .logo img {
+    width: 120px;
+}
+
+.page-options {
+    width: 600px;
+    min-width: 100px;
+
+    justify-content: space-evenly;
+}
+
+.page-options {
+    list-style: none;
+}
