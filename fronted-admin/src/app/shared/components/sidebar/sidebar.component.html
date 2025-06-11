@@ -1,0 +1,23 @@
+<div class="sidebar">
+    <div class="logo">
+        <img src="assets/images/logo.png" alt="Logo" srcset="">
+    </div>
+    <div class="sidebar_option-wrapper">
+        <div class="sidebar-option" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <img src="assets/icons/informe.png" alt="">
+            <a routerLink = "/dashboard">Dashboard</a>
+        </div>
+        <div class="sidebar-option"  routerLinkActive="active">
+            <img src="assets/icons/ordenes2.png" alt="">
+            <a routerLink="/orders">Ordenes</a>
+        </div>
+        <div class="sidebar-option"  routerLinkActive="active">
+            <img src="assets/icons/productos.png" alt="">
+            <a routerLink="products">Productos</a>
+        </div>
+        <div class="sidebar-option"  routerLinkActive="active">
+            <img src="assets/icons/categorias.png" alt="">
+            <a routerLink="categories">categorias</a>
+        </div>
+    </div>
+</div>

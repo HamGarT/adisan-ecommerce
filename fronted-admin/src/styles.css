@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Boldonse&family=Cal+Sans&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Special+Gothic&family=Special+Gothic+Expanded+One&display=swap');
+
+html, input, textarea, select {
+
+    font-family: "Host Grotesk", sans-serif;
+    font-family: "Cal Sans", sans-serif;
+    font-family: "Host Grotesk", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}

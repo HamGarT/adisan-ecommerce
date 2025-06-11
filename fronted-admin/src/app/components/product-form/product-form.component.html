@@ -1,0 +1,81 @@
+<div class="overlay" (click)="onOverlayClick($event)">
+  <div class="product-form-container">
+    <div class="form-card">
+      <h2 class="form-title">Crear nuevo producto</h2>
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+
+        <div class="form-group">
+          <label for="name" class="form-label">Nombre Producto *</label>
+          <input type="text" id="name" formControlName="name" class="form-input"
+            [class.error]="name?.invalid && name?.touched" placeholder="Enter product name">
+          <div *ngIf="name?.invalid && name?.touched" class="error-message">
+            <small *ngIf="name?.errors?.['required']">Product name is required</small>
+            <small *ngIf="name?.errors?.['minlength']">Product name must be at least 2 characters</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="description" class="form-label">Description</label>
+          <textarea id="description" formControlName="description" class="form-textarea"
+            placeholder="Enter product description" rows="4"></textarea>
+        </div>
+        <div class="form-group">
+          <div class="form-group">
+            <label for="price" class="form-label">Precio *</label>
+            <input type="number" id="price" formControlName="price" class="form-input"
+              [class.error]="price?.invalid && price?.touched" placeholder="0.00" step="0.01" min="0">
+            <div *ngIf="price?.invalid && price?.touched" class="error-message">
+              <small *ngIf="price?.errors?.['required']">Price is required</small>
+              <small *ngIf="price?.errors?.['min']">Price must be greater than 0</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="stock" class="form-label">Stock *</label>
+            <input type="number" id="stock" formControlName="stock" class="form-input"
+              [class.error]="price?.invalid && price?.touched" placeholder="0" step="1" min="0">
+            <div *ngIf="price?.invalid && price?.touched" class="error-message">
+              <small *ngIf="stock?.errors?.['required']">Price is required</small>
+              <small *ngIf="price?.errors?.['min']">Price must be greater than 0</small>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="category" class="form-label">Categoria *</label>
+          <select id="category" formControlName="category" class="form-select"
+            [class.error]="category?.invalid && category?.touched">
+            <option value="">Select a category</option>
+            <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.nombre }}</option>
+          </select>
+          <div *ngIf="category?.invalid && category?.touched" class="error-message">
+            <small *ngIf="category?.errors?.['required']">Category is required</small>
+          </div>
+        </div>
+        
+
+        <div class="form-group">
+          <label for="file" class="form-label">Imagen Producto *</label>
+          <input type="file" id="file" (change)="onFileSelected($event)" accept="image/*" class="form-file-input"
+            [class.error]="file?.invalid && file?.touched">
+          <div *ngIf="file?.invalid && file?.touched" class="error-message">
+            <small *ngIf="file?.errors?.['required']">Product image is required</small>
+          </div>
+
+
+          <div *ngIf="imagePreview" class="image-preview">
+            <img [src]="imagePreview" alt="Product preview" class="preview-image">
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" (click)="resetForm()" class="btn btn-secondary" [disabled]="isLoading">
+            Reset
+          </button>
+          <button type="submit" class="btn btn-primary" [disabled]="productForm.invalid || isLoading">
+            <span *ngIf="isLoading" class="loading-spinner"></span>
+            {{ isLoading ? 'Creating...' : 'Create Product' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

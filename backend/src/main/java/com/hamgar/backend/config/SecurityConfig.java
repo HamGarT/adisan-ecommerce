@@ -35,7 +35,8 @@ public class SecurityConfig {
                 CorsConfiguration cfg = new CorsConfiguration();
                 cfg.setAllowedOrigins(Arrays.asList(
                         "http://localhost:4200/",
-                        "http://localhost:5173/"
+                        "http://localhost:5173/",
+                        "http://localhost:50281/"
 
                 ));
                 cfg.setAllowedMethods(Collections.singletonList("*"));

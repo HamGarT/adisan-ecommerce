@@ -1,6 +1,7 @@
 package com.hamgar.backend.service;
 
 import com.hamgar.backend.dto.request.CreateProductoRequest;
+import com.hamgar.backend.dto.request.CreateProductoRequestTwo;
 import com.hamgar.backend.dto.response.ProductoResponse;
 import com.hamgar.backend.model.Producto;
 import com.hamgar.backend.repository.ProductoRepository;
@@ -42,6 +43,23 @@ public class ProductoService {
             producto.setImageKey(imageFileName);
             imageService.uploadImage(request.getImageProduct(), imageFileName);
         }*/
+        return productoRepository.save(producto);
+    }
+
+    public Producto createTwo(CreateProductoRequestTwo request) throws IOException {
+        Producto producto = Producto.builder()
+                .publicId( UUID.randomUUID())
+                .nombre(request.getNombre())
+                .precio(request.getPrecio())
+                .categoria(request.getCategoria())
+                .stock(request.getStock())
+                .build();
+        if(request.getFile() != null){
+            String imageFileName = imageService.generateImageName(request.getFile().getOriginalFilename());
+            System.out.println(imageFileName);
+            producto.setImageKey(imageFileName);
+            imageService.uploadImage(request.getFile(), imageFileName);
+        }
         return productoRepository.save(producto);
     }
 

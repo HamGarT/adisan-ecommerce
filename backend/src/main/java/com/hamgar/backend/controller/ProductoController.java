@@ -1,6 +1,7 @@
 package com.hamgar.backend.controller;
 
 import com.hamgar.backend.dto.request.CreateProductoRequest;
+import com.hamgar.backend.dto.request.CreateProductoRequestTwo;
 import com.hamgar.backend.dto.response.ProductoResponse;
 import com.hamgar.backend.model.Producto;
 import com.hamgar.backend.service.ProductoService;
@@ -24,7 +25,11 @@ public class ProductoController {
         Producto producto = productoService.create(request);
         return new ResponseEntity<>(ProductoResponse.from(producto), HttpStatus.CREATED);
     }
-
+    @PostMapping(value = "/add-two", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity createTwo(@ModelAttribute CreateProductoRequestTwo request) throws IOException {
+        Producto producto = productoService.createTwo(request);
+        return new ResponseEntity<>(ProductoResponse.from(producto), HttpStatus.CREATED);
+    }
     @GetMapping
     public  ResponseEntity<List<ProductoResponse>> getAll(){
         List<ProductoResponse> productoResponses = productoService.findAll();
