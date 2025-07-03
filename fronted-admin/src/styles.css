@@ -6,8 +6,39 @@ html, input, textarea, select {
     font-family: "Cal Sans", sans-serif;
     font-family: "Host Grotesk", sans-serif;
 }
-
+body{
+    background-color: #FDFBF9;
+}
 a {
     text-decoration: none;
     color: black;
+}
+
+
+
+.grid-table {
+    width: 90%;
+    margin: auto;
+}
+.grid-header,
+.grid-row {
+    display: grid;
+    border: 1px solid rgba(235, 235, 235, 0.822);
+    border-radius: 10px;
+    margin: 20px 0;
+    min-height: 50px;
+}
+.grid-row:hover{
+    box-shadow: 0px 2px 10px -3px rgba(0,0,0,0.1);
+    transition: all .25s;
+}
+.grid-header{
+    font-weight:700;
+    border: none;
+    background-color: #F4F6F8;
+    box-shadow: none;
+    
+}
+.grid-cell {
+    margin: auto;
 }

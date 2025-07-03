@@ -27,3 +27,12 @@
 .page-options {
     list-style: none;
 }
+
+.user-options .option-item {
+    margin-left: 20px;
+}
+
+.user-options .option-item svg{
+    width: 25px;
+    height: 25px;
+}

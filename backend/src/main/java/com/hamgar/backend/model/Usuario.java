@@ -28,4 +28,5 @@ public class Usuario {
     private UserRole role;
     @OneToMany(mappedBy = "usuario")
     private List<Order> pedidos;
+
 }

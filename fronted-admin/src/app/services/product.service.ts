@@ -24,11 +24,11 @@ export class ProductService {
     return this.http.post<Producto>(this.baseUrl, producto);
   }
 
-  update(id: number, producto: Producto): Observable<void> {
+  update(id: string, producto: Producto): Observable<void> {
     return this.http.put<void>(`${this.baseUrl}/${id}`, producto);
   }
 
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  delete(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
   }
 }

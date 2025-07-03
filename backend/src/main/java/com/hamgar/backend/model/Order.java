@@ -24,3 +24,5 @@ public class Order {
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<OrderItem> items;
 }
+
+

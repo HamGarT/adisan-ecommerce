@@ -1,21 +1,32 @@
 <div class="grid-table">
-    <div class="grid-header">
-        <div class="grid-cell">Id</div>
-        <div class="grid-cell">Nombre</div>
-        <div class="grid-cell">Stock</div>
-        <div class="grid-cell">Precio</div>
-        <div class="grid-cell">Editar</div>
-        <div class="grid-cell">Eliminar</div>
-    </div>
-    @for (producto of productos; track producto.id) {
+  <div class="grid-header">
+    <div class="grid-cell">Id</div>
+    <div class="grid-cell">Nombre</div>
+    <div class="grid-cell">Editar</div>
+    <div class="grid-cell">Eliminar</div>
+  </div>
+  @for (category of categoriesPaginadas; track category.id) {
 
-    <div class="grid-row">
-        <div class="grid-cell">{{producto.nombre}}</div>
-        <div class="grid-cell"><img [src]="producto.imageUrl" alt="" srcset=""></div>
-        <div class="grid-cell">{{producto.stock}}</div>
-        <div class="grid-cell">{{producto.precio}}</div>
-        <div class="grid-cell">🛠️</div>
-        <div class="grid-cell">🗑️</div>
-    </div>
-    }
+  <div class="grid-row">
+
+    <div class="grid-cell">{{category.id}}</div>
+    <div class="grid-cell">{{category.nombre}}</div>
+    <div class="grid-cell">🛠️</div>
+    <div class="grid-cell">🗑️</div>
+  </div>
+  }
+</div>
+<div class="paginacion" *ngIf="totalPaginas > 1">
+  <button (click)="paginaAnterior()" [disabled]="paginaActual === 1" class="btn-paginacion">
+    ← Anterior
+  </button>
+
+  <button *ngFor="let pagina of paginasArray" (click)="cambiarPagina(pagina)" [class.activa]="pagina === paginaActual"
+    class="btn-numero">
+    {{ pagina }}
+  </button>
+
+  <button (click)="paginaSiguiente()" [disabled]="paginaActual === totalPaginas" class="btn-paginacion">
+    Siguiente →
+  </button>
 </div>

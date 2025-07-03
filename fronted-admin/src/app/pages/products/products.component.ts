@@ -14,10 +14,14 @@ export class ProductsComponent implements OnInit {
 
   showForm = false;
   productos: Producto[] = [];
-  constructor(private productService: ProductService) { };
+  constructor(
+    private productService: ProductService,
+    
+  ) { };
 
   ngOnInit() {
     this.loadProducts();
+
   }
 
   toggleForm() {
@@ -35,7 +39,24 @@ export class ProductsComponent implements OnInit {
       }
     });
   }
+  
+  onDelete(id: string) {
+    console.log(id);
+    this.productService.delete(id).subscribe({
+        next: () => {
+            console.log('Product deleted successfully');
+            this.productos = this.productos.filter(p => p.id !== id);
+        },
+        error: (error) => {
+            console.error('Error deleting product:', error);
+        }
+    });
+  }
 
+  onEdit(product: Producto){
+    console.log(product);
+  }
+ 
 
 
 }

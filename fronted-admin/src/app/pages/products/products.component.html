@@ -13,18 +13,18 @@
             <div class="grid-cell">Imagen</div>
             <div class="grid-cell">Stock</div>
             <div class="grid-cell">Precio</div>
-            <div class="grid-cell">Editar</div>
-            <div class="grid-cell">Eliminar</div>
+            <div class="grid-cell">Acciones</div>
         </div>
         @for (producto of productos; track producto.id) {
-
         <div class="grid-row">
             <div class="grid-cell">{{producto.nombre}}</div>
             <div class="grid-cell"><img [src]="producto.imageUrl" alt="" srcset=""></div>
             <div class="grid-cell">{{producto.stock}}</div>
-            <div class="grid-cell">{{producto.precio}}</div>
-            <div class="grid-cell">🛠️</div>
-            <div class="grid-cell">🗑️</div>
+            <div class="grid-cell">S/{{producto.precio}}</div>
+            <div class="grid-cell">
+                <button (click)="onEdit(producto)">🛠️</button>
+                <button (click)="onDelete(producto.id)">🗑️</button>
+            </div>
         </div>
         }
     </div>

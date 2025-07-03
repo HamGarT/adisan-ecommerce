@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { NgFor, NgIf } from '@angular/common';
 import { CategoryService } from '../../services/category.service';
 import { Categoria } from '../../interfaces';
+import { ProductService } from '../../services/product.service';
 
 
 @Component({
@@ -63,7 +64,17 @@ export class ProductFormComponent implements OnInit {
     this.resetForm();
     this.formClosed.emit();
   }
-
+  resetForm(): void {
+    this.productForm.reset({
+      name: '',
+      description: '',
+      price: 0,
+      category: '',
+      file: null
+    });
+    this.selectedFile = null;
+    this.imagePreview = null;
+  }
   onOverlayClick(event: MouseEvent) {
     if (event.target === event.currentTarget) {
       this.closeForm();
@@ -88,14 +99,13 @@ export class ProductFormComponent implements OnInit {
   onSubmit(): void {
     if (this.productForm.valid && this.selectedFile) {
       this.isLoading = true;
-
       const formData = new FormData();
       formData.append('nombre', this.productForm.get('name')?.value);
       formData.append('description', this.productForm.get('description')?.value);
       formData.append('precio', this.productForm.get('price')?.value);
       formData.append('categoria', this.productForm.get('category')?.value);
+      formData.append('stock', this.productForm.get('stock')?.value);
       formData.append('file', this.selectedFile);
-
       this.http.post('http://localhost:5459/api/v1/product/add-two', formData)
         .subscribe({
           next: (response) => {
@@ -113,17 +123,9 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
-  resetForm(): void {
-    this.productForm.reset({
-      name: '',
-      description: '',
-      price: 0,
-      category: '',
-      file: null
-    });
-    this.selectedFile = null;
-    this.imagePreview = null;
-  }
+ 
+
+
 
   private markFormGroupTouched(): void {
     Object.keys(this.productForm.controls).forEach(key => {
@@ -137,5 +139,5 @@ export class ProductFormComponent implements OnInit {
   get price() { return this.productForm.get('price'); }
   get category() { return this.productForm.get('category'); }
   get file() { return this.productForm.get('file'); }
-  get stock(){ return this.productForm.get('stock');}
+  get stock() { return this.productForm.get('stock'); }
 }

@@ -1,0 +1,41 @@
+<div class="overlay" (click)="onOverlayClick($event)">
+    <div class="product-card">
+        <div class="brand-text">Distribuciones Adisan</div>
+
+        <img [src]="product?.imageUrl" [alt]="product?.nombre" class="product-image">
+
+        <h1 class="product-title">{{ product?.nombre }}</h1>
+
+        <div class="price-container">
+            <span class="original-price">S/.{{ product?.precio | number:'1.2-2' }} PEN</span>
+            <span class="sale-price">S/.{{ product?.precio | number:'1.2-2' }} PEN</span>
+            <!-- <span class="sale-badge" *ngIf="product.onSale">Sale</span> -->
+        </div>
+
+        <div class="button-label">Cantidad</div>
+
+        <div class="quantity-selector">
+            <div class="quantity-control">
+                <button class="quantity-btn minus-sign" (click)="decreaseQuantity()" [disabled]="quantity <= 1">
+                    −
+                </button>
+                <span class="quantity-display">{{ quantity }}</span>
+                <button class="quantity-btn plus-sign" (click)="increaseQuantity()">
+                    +
+                </button>
+            </div>
+        </div>
+
+        <button class="add-to-cart" (click)="addProductToCart(product?.id!)">
+            Añadir al carrito
+        </button>
+
+        <p class="product-description">
+            Homemade knitted throw pillows in a variety of colors
+        </p>
+
+        <div class="total-price" *ngIf="quantity > 1">
+            <small>Total: S/.{{ getTotalPrice() | number:'1.2-2' }} PEN</small>
+        </div>
+    </div>
+</div>

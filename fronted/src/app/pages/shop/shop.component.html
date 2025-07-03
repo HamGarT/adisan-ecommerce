@@ -1,1 +1,47 @@
-<p>shop works!</p>
+<section class="shop">
+    <div class="shop__prduct-filters">
+        <span>Categorias</span>
+        <ul class="filters-container">
+            <li>
+                <a href="">Bebidas</a>
+            </li>
+            <li>
+                <a href="">Golosinas</a>
+            </li>
+            <li>
+                <a href="">Verduras</a>
+            </li>
+
+        </ul>
+    </div>
+    <div class="shop__product-container products-grid">
+        <div class="product-card">
+            <button class="add-button" (click)="toggleCard()">+</button>
+
+            <div class="product-image">
+                <img src="path/to/your/product-image.jpg" alt="220V Energy Drink" />
+            </div>
+
+            <div class="product-info">
+                <h3 class="product-title">220V 450 ML X 12 Unid.</h3>
+                <p class="product-price">S/19.00</p>
+            </div>
+        </div>
+        @for (item of products; track $index) {
+        <div class="product-card">
+            <button class="add-button" (click)="toggleCard(item)">+</button>
+
+            <div class="product-image">
+                <img [src]="item.imageUrl" alt="220V Energy Drink" />
+            </div>
+
+            <div class="product-info">
+                <h3 class="product-title">{{item.nombre}}</h3>
+                <p class="product-price">S/.{{item.precio}}</p>
+            </div>
+        </div>
+        }
+
+    </div>
+</section>
+<app-product-card *ngIf="showCard" (cardClosed)="toggleCard()" [product]="selectedProduct"></app-product-card>

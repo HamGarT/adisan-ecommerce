@@ -46,6 +46,9 @@ public class ProductoService {
         return productoRepository.save(producto);
     }
 
+    public  Producto findByPublicId(UUID publicId){
+        return productoRepository.findByPublicId(publicId);
+    }
     public Producto createTwo(CreateProductoRequestTwo request) throws IOException {
         Producto producto = Producto.builder()
                 .publicId( UUID.randomUUID())
@@ -79,8 +82,13 @@ public class ProductoService {
             ProductoResponse productoRespons = ProductoResponse.from(producto);
             productoRespons.setImageUrl(signedUrl);
             productoResponses.add(productoRespons);
-            System.out.println("Signed URL: " + signedUrl);
+            //System.out.println("Signed URL: " + signedUrl);
         }
         return productoResponses;
+    }
+
+    public ProductoResponse DeleteProducto(UUID publicId){
+        Producto producto = productoRepository.deleteByPublicId(publicId);
+        return ProductoResponse.from(producto);
     }
 }

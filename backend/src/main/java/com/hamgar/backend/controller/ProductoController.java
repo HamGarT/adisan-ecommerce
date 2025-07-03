@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/product")
@@ -35,4 +36,21 @@ public class ProductoController {
         List<ProductoResponse> productoResponses = productoService.findAll();
         return new ResponseEntity<>(productoResponses, HttpStatus.OK);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductoResponse> getOne(@PathVariable UUID id){
+        Producto producto = productoService.findByPublicId(id);
+        return new ResponseEntity<>(ProductoResponse.from(producto), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ProductoResponse> delete(@PathVariable UUID id){
+        ProductoResponse productoResponse = productoService.DeleteProducto(id);
+        return new ResponseEntity<>(productoResponse, HttpStatus.OK);
+    }
+
+//    public ResponseEntity<ProductoResponse> updateOne(@PathVariable UUID id, @RequestBody CreateProductoRequest request){
+//
+//    }
+
 }
