@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Producto } from '../../interfaces';
 import { NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 import { ProductFormComponent } from "../../components/product-form/product-form.component";
 
 @Component({
@@ -14,8 +15,11 @@ export class ProductsComponent implements OnInit {
 
   showForm = false;
   productos: Producto[] = [];
+  selectedProduct: Producto | null = null;
+
   constructor(
     private productService: ProductService,
+    private router: Router
     
   ) { };
 
@@ -26,6 +30,9 @@ export class ProductsComponent implements OnInit {
 
   toggleForm() {
     this.showForm = !this.showForm;
+    if (!this.showForm) {
+      this.selectedProduct = null;
+    }
   }
 
   loadProducts() {
@@ -41,7 +48,6 @@ export class ProductsComponent implements OnInit {
   }
   
   onDelete(id: string) {
-    console.log(id);
     this.productService.delete(id).subscribe({
         next: () => {
             console.log('Product deleted successfully');
@@ -53,8 +59,14 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  onEdit(product: Producto){
-    console.log(product);
+  onEdit(producto: any) {
+    this.selectedProduct = producto;
+    this.showForm = true;
+  }
+  
+  onProductUpdated() {
+    this.loadProducts(); 
+    this.toggleForm(); 
   }
  
 

@@ -1,17 +1,20 @@
 <div class="overlay" (click)="onOverlayClick($event)">
     <div class="product-form-container">
         <div class="form-card">
-            <h2 class="form-title">Crear nueva categoria</h2>
+            <h2 class="form-title">{{isEditMode ? 'Editar Categoria' : "Crear Categoria"}}</h2>
             <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label for="name" class="form-label">Nombre categoria *</label>
                     <input type="text" id="name" formControlName="name" class="form-input">
                     <div *ngIf="name?.valid && name?.touched" class="error-message">
                         <small *ngIf="name?.errors?.['required']">Nombre de la categoria es requerido</small>
+                        <small *ngIf="name?.hasError('whitespace')">Nombre de la categoria es requerido</small>
                     </div>
                 </div>
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-primary"  [disabled]="categoryForm.invalid">Enviar</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="categoryForm.invalid">
+                        {{isEditMode ? 'Actualizar' : "Enviar"}}
+                    </button>
                 </div>
             </form>
         </div>

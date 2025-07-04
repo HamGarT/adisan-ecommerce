@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
 import { Categoria } from '../../interfaces';
 import { NgFor, NgIf } from '@angular/common';
@@ -10,21 +10,32 @@ import { NgFor, NgIf } from '@angular/common';
   styleUrl: './category-list.component.css'
 })
 export class CategoryListComponent implements OnInit {
+  @Output() editCategory = new EventEmitter<any>();
   categories: Categoria[] = [];
   paginaActual = 1;
   itemsPorPagina = 5;
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    this.categoryService.getAll().subscribe({
-      next: (data) => {
-        this.categories = data;
-      },
-      error: (err) => {
-        console.error('Failed to load categories', err);
-      }
+    this.refreshList();
+  }
 
-    });
+  onEditClick(categoria:any){
+    this.editCategory.emit(categoria)
+  }
+
+  onDelete(idCategory : number){
+    this.categoryService.delete(idCategory).subscribe(
+      {
+        next: ()=>{
+          this.categories = this.categories.filter( c => c.id !== idCategory)
+        },
+        error: (error)=>{
+          console.error('Error deleting category:', error);
+        }
+      }
+    );
+
   }
 
   get categoriesPaginadas() {

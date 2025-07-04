@@ -1,9 +1,14 @@
 <div>
-    <h2>Productos</h2>
+    <h2 class="section-title">Productos</h2>
     <button class="show-form-btn" (click)="toggleForm()">
         {{ showForm ? 'Hide Form' : 'Show Form' }}
     </button>
-    <app-product-form *ngIf="showForm" (formClosed)="toggleForm()">
+    <app-product-form 
+        *ngIf="showForm"
+        [productToEdit]="selectedProduct" 
+        (formClosed)="toggleForm()"
+        (productCreated)="onProductUpdated()"
+        (productUpdated)="onProductUpdated()">
     </app-product-form>
 
     <div class="grid-table">

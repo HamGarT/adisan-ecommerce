@@ -1,6 +1,5 @@
 package com.hamgar.backend.dto.request;
 
-
 import com.hamgar.backend.model.Categoria;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,6 +12,5 @@ public class CreateProductoRequest {
     private BigDecimal precio;
     private Integer stock;
     private Categoria categoria;
-    private String imageKey;
-
+    private MultipartFile file;
 }

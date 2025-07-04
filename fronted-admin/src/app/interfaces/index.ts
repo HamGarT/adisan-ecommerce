@@ -10,6 +10,5 @@ export interface Producto{
 
 export interface Categoria{
     id: number,
-    publicId: string,
     nombre: string
 }

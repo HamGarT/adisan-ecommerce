@@ -12,6 +12,8 @@ import org.springframework.web.servlet.function.EntityResponse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/categories")
@@ -29,6 +31,17 @@ public class CategoriaController {
     public ResponseEntity<CategoriaResponse> create(@RequestBody CreateCategoriaRequest request) {
         Categoria categoria = categoriaService.create(request);
         return new ResponseEntity<>(CategoriaResponse.from(categoria), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<CategoriaResponse> update(@PathVariable Long id, @RequestBody CreateCategoriaRequest request) {
+        CategoriaResponse categoriaResponse = categoriaService.update(id,request);
+        return new ResponseEntity<>(categoriaResponse, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Map<String, String>> delete(@PathVariable Long id) {
+        return ResponseEntity.ok(categoriaService.delete(id));
     }
 
 

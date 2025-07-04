@@ -24,6 +24,7 @@ public class Producto {
     private String imageKey;
     private BigDecimal precio;
     private Integer stock;
+    private String descripcion;
     @ManyToOne
     private Categoria categoria;
 

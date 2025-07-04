@@ -1,10 +1,18 @@
 <div>
-    <h2>Categorias</h2>
+    <h2 class="section-title">Categorias</h2>
 </div>
 <div (click)="toggleForm()">
     <button>Agregar</button>
-    
 </div>
-<app-category-form *ngIf="showForm" (formClosed)="toggleForm()" (categoryAdded)="onCategoryAdded()"></app-category-form>
-<app-category-list #categoryList></app-category-list>
+<app-category-form 
+    *ngIf="showForm" 
+    (formClosed)="toggleForm()" 
+    [categoryToEdit]="selectedCategory"
+    (categoryCreated)="onCategoryUpdated()"
+    (categoryUpdated)="onCategoryUpdated()">
+</app-category-form>
+<app-category-list 
+    #categoryList
+    (editCategory)="onEditCategory($event)">
+</app-category-list>
 

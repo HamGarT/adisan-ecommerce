@@ -2,8 +2,7 @@
   <div class="grid-header">
     <div class="grid-cell">Id</div>
     <div class="grid-cell">Nombre</div>
-    <div class="grid-cell">Editar</div>
-    <div class="grid-cell">Eliminar</div>
+    <div class="grid-cell">Acciones</div>
   </div>
   @for (category of categoriesPaginadas; track category.id) {
 
@@ -11,8 +10,10 @@
 
     <div class="grid-cell">{{category.id}}</div>
     <div class="grid-cell">{{category.nombre}}</div>
-    <div class="grid-cell">🛠️</div>
-    <div class="grid-cell">🗑️</div>
+    <div class="grid-cell">
+      <button (click)="onEditClick(category)">🛠️</button>
+      <button (click)="onDelete(category.id)">🗑️</button>
+    </div>
   </div>
   }
 </div>

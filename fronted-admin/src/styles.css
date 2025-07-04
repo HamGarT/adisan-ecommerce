@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Boldonse&family=Cal+Sans&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Special+Gothic&family=Special+Gothic+Expanded+One&display=swap');
 
-html, input, textarea, select {
+html, input, textarea, select, button {
 
     font-family: "Host Grotesk", sans-serif;
     font-family: "Cal Sans", sans-serif;
@@ -14,7 +14,9 @@ a {
     color: black;
 }
 
-
+.section-title{
+    font-size: 40px;
+}
 
 .grid-table {
     width: 90%;
@@ -25,8 +27,10 @@ a {
     display: grid;
     border: 1px solid rgba(235, 235, 235, 0.822);
     border-radius: 10px;
-    margin: 20px 0;
+    margin: 10px 0;
     min-height: 50px;
+    background-color: #ffffff;
+    font-weight: 500;
 }
 .grid-row:hover{
     box-shadow: 0px 2px 10px -3px rgba(0,0,0,0.1);
@@ -35,10 +39,14 @@ a {
 .grid-header{
     font-weight:700;
     border: none;
-    background-color: #F4F6F8;
+    background-color: #515151;
     box-shadow: none;
+    color: #ffffff;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
     
 }
 .grid-cell {
     margin: auto;
+    text-align: center;
 }

@@ -1,16 +1,16 @@
 <div class="overlay" (click)="onOverlayClick($event)">
   <div class="product-form-container">
     <div class="form-card">
-      <h2 class="form-title">Crear nuevo producto</h2>
+      <h2 class="form-title">{{ isEditMode ? 'Editar producto' : 'Crear nuevo producto' }}</h2>
       <form [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-
         <div class="form-group">
           <label for="name" class="form-label">Nombre Producto *</label>
           <input type="text" id="name" formControlName="name" class="form-input"
             [class.error]="name?.invalid && name?.touched" placeholder="Enter product name">
           <div *ngIf="name?.invalid && name?.touched" class="error-message">
-            <small *ngIf="name?.errors?.['required']">Product name is required</small>
-            <small *ngIf="name?.errors?.['minlength']">Product name must be at least 2 characters</small>
+            <small *ngIf="name?.errors?.['required']">Nombre del prducto requerido</small>
+            <small *ngIf="name?.errors?.['minlength']">Nombre del producto debe tener al menos 2 caracteres</small>
+            <small *ngIf="name?.hasError('whitespace')">Producto no debe contener caracteres vacios</small>
           </div>
         </div>
 
@@ -25,8 +25,8 @@
             <input type="number" id="price" formControlName="price" class="form-input"
               [class.error]="price?.invalid && price?.touched" placeholder="0.00" step="0.01" min="0">
             <div *ngIf="price?.invalid && price?.touched" class="error-message">
-              <small *ngIf="price?.errors?.['required']">Price is required</small>
-              <small *ngIf="price?.errors?.['min']">Price must be greater than 0</small>
+              <small *ngIf="price?.errors?.['required']">Precio es requerido</small>
+              <small *ngIf="price?.errors?.['min']">Precio debe ser mayor que 0</small>
             </div>
           </div>
           <div class="form-group">
@@ -34,8 +34,8 @@
             <input type="number" id="stock" formControlName="stock" class="form-input"
               [class.error]="price?.invalid && price?.touched" placeholder="0" step="1" min="0">
             <div *ngIf="price?.invalid && price?.touched" class="error-message">
-              <small *ngIf="stock?.errors?.['required']">Price is required</small>
-              <small *ngIf="price?.errors?.['min']">Price must be greater than 0</small>
+              <small *ngIf="stock?.errors?.['required']">Stock es requerido</small>
+              <small *ngIf="price?.errors?.['min']">Stock debe ser mayor que 0</small>
             </div>
           </div>
         </div>
@@ -43,24 +43,23 @@
           <label for="category" class="form-label">Categoria *</label>
           <select id="category" formControlName="category" class="form-select"
             [class.error]="category?.invalid && category?.touched">
-            <option value="">Select a category</option>
+            <option disabled value="">Selecciona una categoria</option>
             <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.nombre }}</option>
           </select>
           <div *ngIf="category?.invalid && category?.touched" class="error-message">
-            <small *ngIf="category?.errors?.['required']">Category is required</small>
+            <small *ngIf="category?.errors?.['required']">Categoria es requerida</small>
           </div>
         </div>
-        
 
-        <div class="form-group">
-          <label for="file" class="form-label">Imagen Producto *</label>
-          <input type="file" id="file" (change)="onFileSelected($event)" accept="image/*" class="form-file-input"
-            [class.error]="file?.invalid && file?.touched">
-          <div *ngIf="file?.invalid && file?.touched" class="error-message">
-            <small *ngIf="file?.errors?.['required']">Product image is required</small>
+        <div class="form-group" [class.image-input]="imagePreview">
+          <div>
+            <label for="file" class="form-label">Imagen Producto *</label>
+            <input type="file" id="file" (change)="onFileSelected($event)" accept="image/*" class="form-file-input"
+              [class.error]="file?.invalid && file?.touched">
+            <div *ngIf="file?.invalid && file?.touched" class="error-message">
+              <small *ngIf="file?.errors?.['required']">Imagen producto es requerida</small>
+            </div>
           </div>
-
-
           <div *ngIf="imagePreview" class="image-preview">
             <img [src]="imagePreview" alt="Product preview" class="preview-image">
           </div>
@@ -72,7 +71,8 @@
           </button>
           <button type="submit" class="btn btn-primary" [disabled]="productForm.invalid || isLoading">
             <span *ngIf="isLoading" class="loading-spinner"></span>
-            {{ isLoading ? 'Creating...' : 'Create Product' }}
+            {{ isLoading ? (isEditMode ? 'Actualizando...' : 'Creando...') : (isEditMode ? 'Actualizar Producto' :
+            'Crear Producto') }}
           </button>
         </div>
       </form>

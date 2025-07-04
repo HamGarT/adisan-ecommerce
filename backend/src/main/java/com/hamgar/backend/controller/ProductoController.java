@@ -1,7 +1,6 @@
 package com.hamgar.backend.controller;
 
 import com.hamgar.backend.dto.request.CreateProductoRequest;
-import com.hamgar.backend.dto.request.CreateProductoRequestTwo;
 import com.hamgar.backend.dto.response.ProductoResponse;
 import com.hamgar.backend.model.Producto;
 import com.hamgar.backend.service.ProductoService;
@@ -21,13 +20,9 @@ public class ProductoController {
     @Autowired
     private ProductoService productoService;
 
-    @PostMapping("/add")
-    public ResponseEntity<ProductoResponse> create(@RequestBody CreateProductoRequest request) throws IOException {
-        Producto producto = productoService.create(request);
-        return new ResponseEntity<>(ProductoResponse.from(producto), HttpStatus.CREATED);
-    }
-    @PostMapping(value = "/add-two", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity createTwo(@ModelAttribute CreateProductoRequestTwo request) throws IOException {
+
+    @PostMapping(value = "/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity createTwo(@ModelAttribute CreateProductoRequest request) throws IOException {
         Producto producto = productoService.createTwo(request);
         return new ResponseEntity<>(ProductoResponse.from(producto), HttpStatus.CREATED);
     }
@@ -44,13 +39,15 @@ public class ProductoController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<ProductoResponse> delete(@PathVariable UUID id){
+    public ResponseEntity<ProductoResponse> delete(@PathVariable("id") UUID id){
         ProductoResponse productoResponse = productoService.DeleteProducto(id);
         return new ResponseEntity<>(productoResponse, HttpStatus.OK);
     }
 
-//    public ResponseEntity<ProductoResponse> updateOne(@PathVariable UUID id, @RequestBody CreateProductoRequest request){
-//
-//    }
+    @PutMapping(value = "/update/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+        public ResponseEntity<ProductoResponse> updateOne(@PathVariable UUID id, @ModelAttribute CreateProductoRequest request) throws IOException {
+        ProductoResponse productoResponse = productoService.UpdateProducto(id, request);
+        return new ResponseEntity<>(productoResponse, HttpStatus.OK);
+    }
 
 }

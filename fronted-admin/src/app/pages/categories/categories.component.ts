@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { CategoryListComponent } from "../../components/category-list/category-list.component";
 import { CategoryFormComponent } from "../../components/category-form/category-form.component";
 import { NgIf } from '@angular/common';
@@ -11,12 +11,19 @@ import { NgIf } from '@angular/common';
 })
 export class CategoriesComponent {
   @ViewChild('categoryList') categoryListComponent!: CategoryListComponent;
+  selectedCategory : any = null
+
   showForm = false;
   toggleForm() {
     this.showForm = !this.showForm;
   }
-  onCategoryAdded() {
+  onCategoryUpdated() {
     this.showForm = false;
     this.categoryListComponent.refreshList();
+  }
+  
+  onEditCategory(category: any){
+    this.selectedCategory = category;
+    this.showForm = true
   }
 }

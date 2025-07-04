@@ -20,12 +20,12 @@ export class ProductService {
     return this.http.get<Producto>(`${this.baseUrl}/${id}`);
   }
 
-  create(producto: Producto): Observable<Producto> {
-    return this.http.post<Producto>(this.baseUrl, producto);
+  create(formData: FormData): Observable<Producto> {
+    return this.http.post<Producto>(`${this.baseUrl}/add`, formData);
   }
 
-  update(id: string, producto: Producto): Observable<void> {
-    return this.http.put<void>(`${this.baseUrl}/${id}`, producto);
+  update(id: string, formData: FormData): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/update/${id}`, formData);
   }
 
   delete(id: string): Observable<void> {
