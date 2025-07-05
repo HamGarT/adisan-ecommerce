@@ -13,4 +13,5 @@ public class CreateProductoRequest {
     private Integer stock;
     private Categoria categoria;
     private MultipartFile file;
+    private String description;
 }

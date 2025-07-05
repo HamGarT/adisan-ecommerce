@@ -1,6 +1,7 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UsuarioService } from '../../../services/usuario.service';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,9 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 export class RegisterComponent {
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private usuarioService : UsuarioService) {
     this.registerForm = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(2), this.noWhitespaceValidator]],
       apellido: ['', [Validators.required, Validators.minLength(2), this.noWhitespaceValidator]],
@@ -22,8 +25,23 @@ export class RegisterComponent {
     });
   }
 
-  onSubmit(){
-
+  onSubmit() {
+    const usuario = {
+      dni: this.registerForm.get('dni')?.value,
+      nombres: this.registerForm.get('nombre')?.value,
+      apellidos: this.registerForm.get('apellido')?.value,
+      fechaNacimiento: this.registerForm.get('fecha')?.value,
+      email: this.registerForm.get('email')?.value,
+      password: this.registerForm.get('password')?.value,
+    }
+    this.usuarioService.create(usuario).subscribe({
+      next: ()=>{
+        console.log("User has been successlly created");
+      },
+      error: (error) =>{
+        console.error('Error creating user: ', error);
+      }
+    });
   }
 
   public noWhitespaceValidator(control: FormControl) {

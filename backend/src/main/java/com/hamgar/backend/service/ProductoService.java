@@ -39,6 +39,7 @@ public class ProductoService {
                 .publicId( UUID.randomUUID())
                 .nombre(request.getNombre())
                 .precio(request.getPrecio())
+                .descripcion(request.getDescription())
                 .categoria(request.getCategoria())
                 .stock(request.getStock())
                 .build();

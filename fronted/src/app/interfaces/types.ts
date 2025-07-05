@@ -14,3 +14,21 @@ export interface Categoria{
     publicId: string,
     nombre: string
 }
+
+export interface Usuario{
+    id? : string,
+    dni: string,
+    nombres: string,
+    apellidos: string,
+    fechaNacimiento: Date,
+    email : string,
+    password : string,
+    phone? : string,
+    role? : string,
+}
+
+export interface AuthentificationRequest{
+    email: string,
+    password: string
+}
+
