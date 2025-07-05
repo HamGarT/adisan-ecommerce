@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,7 +22,10 @@ public class Usuario {
     private Long id;
     @Column(name = "publicId", unique = true)
     private UUID publicId;
-    private String name;
+    private String dni;
+    private String nombres;
+    private String apellidos;
+    private Date fechaNacimiento;
     private String password;
     private String email;
     private String phone;

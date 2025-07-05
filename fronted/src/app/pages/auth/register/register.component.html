@@ -1,0 +1,83 @@
+<div class="overlay">
+    <div class="register-container">
+        <h2>Terminar de registrarme</h2>
+        <span class="header-divider"></span>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" method="post">
+            <div class="field-group">
+                <label for="nombre">Nombre completo</label>
+                <input type="text" formControlName="nombre" id="nombre" [class.error]="nombre?.invalid && nombre?.touched"
+                    placeholder="Nombre que aparece en el documento de identidad">
+                <div *ngIf="nombre?.invalid && nombre?.touched" class="error-message">
+                    <small *ngIf="nombre?.errors?.['required']">Nombre es requerido</small>
+                    <small *ngIf="nombre?.errors?.['minlength']">Nombre debe tener al menos 2 caracteres</small>
+                    <small *ngIf="nombre?.hasError('whitespace')">Nombre no debe contener caracteres vacios</small>
+                </div>
+                <input type="text" formControlName="apellido" id="apellido"
+                    placeholder="Apellidos que aparecen en el documento de identidad">
+                <div *ngIf="apellido?.invalid && nombre?.touched" class="error-message">
+                    <small *ngIf="apellido?.errors?.['required']">Apellido es requerido</small>
+                    <small *ngIf="apellido?.errors?.['minlength']">Apellido debe tener al menos 2 caracteres</small>
+                    <small *ngIf="apellido?.hasError('whitespace')">Apellido no debe contener caracteres vacios</small>
+                </div>
+                <p class="description">
+                    Asegúrate de que coincide con el nombre que aparece en tu documento de identidad oficial.
+                </p>
+            </div>
+
+            <div class="field-group">
+                <label for="fecha">Fecha de nacimiento</label>
+                <input type="date" formControlName="fecha" id="fecha">
+                <div *ngIf="fecha?.invalid && fecha?.touched" class="error-message">
+                    <small *ngIf="apellido?.errors?.['required']">Fecha de nacimiento es requerida</small>
+                </div>
+                <p class="description">
+                    Para poder registrarte debes tener al menos 18 años.
+                </p>
+            </div>
+
+            <div class="field-group">
+                <label for="dni">Identificación</label>
+                <input type="text" formControlName="dni" class="form-input" placeholder="DNI número" required id="dni"
+                    pattern="[0-9]{8}" maxlength="8">
+                <div *ngIf="dni?.invalid && dni?.touched" class="error-message">
+                    <small *ngIf="dni?.errors?.['required']">Dni es requerido</small>
+                    <small *ngIf="dni?.errors?.['maxlength']">Dni solo puede tener 8 digitos</small>
+                    <small *ngIf="dni?.hasError('whitespace')">Dni no debe contener caracteres vacios</small>
+                </div>
+                <p class="description">
+                    Ingresa tu numero de DNI(8-digitos). Esta Información es requerida para propositos de verificación.
+                </p>
+            </div>
+
+            <div class="field-group">
+                <label for="email">Información de contacto</label>
+                <input type="email" formControlName="email" id="email" placeholder="Correo electrónico"
+                    value="hamer@mail.com">
+                <div *ngIf="email?.invalid && email?.touched" class="error-message">
+                    <small *ngIf="email?.errors?.['required']">Email es requerido</small>
+                    <small *ngIf="email?.errors?.['email']">Ingresar una dirección de correo valida</small>
+                    <small *ngIf="email?.hasError('whitespace')">Email no debe contener caracteres vacios</small>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label for="password">Contraseña</label>
+                <input type="password" formControlName="password" id="password" placeholder="Contraseña">
+                <div *ngIf="password?.invalid && password?.touched" class="error-message">
+                    <small *ngIf="password?.errors?.['required']">Contraseña es requerida</small>
+                    <small *ngIf="password?.hasError('whitespace')">Contraseña no debe contener caracteres vacios</small>
+                </div>
+            </div>
+
+            <p class="legal-text">
+                Al seleccionar <strong>Aceptar y continuar</strong>, acepto los
+                <a href="#">Términos de servicio</a>, los
+                <a href="#">Términos de pago del servicio</a> y la
+                <a href="#">Política contra la discriminación</a> de Airbnb.
+                También reconozco la <a href="#">Política de privacidad</a>.
+            </p>
+
+            <button type="submit" class="submit-btn" [disabled]="registerForm.invalid">Aceptar y continuar</button>
+        </form>
+    </div>
+</div>

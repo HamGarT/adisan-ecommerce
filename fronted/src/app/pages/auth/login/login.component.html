@@ -1,0 +1,30 @@
+<div class="overlay">
+    <div class="login-container">
+        <h2>Iniciar sesión o registrarse</h2>
+        <span class="header-divider"></span>
+        <div class="welcome">Bienvenido a Distribuciones Adisan</div>
+        <form [formGroup]="loginForm" method="post" (ngSubmit)="onSubmit()">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" formControlName="email" name="email" placeholder="Ingresa tu correo">
+            <div *ngIf="email?.invalid && email?.touched" class="error-message">
+                <small *ngIf="email?.errors?.['required']">Email requerido para logearse</small>
+                <small *ngIf="email?.errors?.['email']">Ingresar una dirección de correo valida</small>
+                <small *ngIf="email?.hasError('whitespace')">Qué estas intentando hacer?</small>
+            </div>
+            <label for="password">Contraseña</label>
+            <input type="password" id="password"  formControlName="password" placeholder="Ingresa tu contraseña">
+            <div *ngIf="password?.invalid && password?.touched" class="error-message">
+                <small *ngIf="password?.errors?.['required']">Contraseña requerida para logearse</small>
+                <small *ngIf="password?.hasError('whitespace')">Qué estas intentando hacer?</small>
+            </div>
+            <button type="submit"  [disabled]="loginForm.invalid">Continuar</button>
+            
+        </form>
+
+        <div class="divider"><span>o registrarse</span></div>
+
+        <div class="social-login">
+            <a routerLink="/auth/register"><img src="https://img.icons8.com/ios-filled/16/new-post.png" />Correo electrónico</a>
+        </div>
+    </div>
+</div>

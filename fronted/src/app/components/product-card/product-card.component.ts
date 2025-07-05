@@ -23,6 +23,7 @@ export class ProductCardComponent {
 
   increaseQuantity(): void {
     this.quantity++;
+    
   }
 
   decreaseQuantity(): void {
@@ -32,18 +33,17 @@ export class ProductCardComponent {
   }
 
   addProductToCart(id: string): void {
-    this.productService.getById(id).subscribe({
-      next: (product: Producto) => {
-        console.log(product);
-        this.store.dispatch(addToCart({ product }));
-        this.store.select(selectCartState).subscribe(cartItems => {
-          console.log('Current cart items:', cartItems);
-        });
-      },
-      error: (err) => {
-        console.error('Failed to load product', err);
-      }
-    });
+
+    console.log(this.product);
+    
+    if (this.product) {
+      this.product.quantity = this.quantity;
+      this.store.dispatch(addToCart({ product: this.product }));
+      // this.store.select(selectCartState).subscribe(cartItems => {
+      //   console.log('Current cart items:', cartItems);
+      // });
+    }
+
   }
 
   getTotalPrice(): number {

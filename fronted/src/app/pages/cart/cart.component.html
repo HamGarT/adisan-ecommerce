@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="cart-section">
+        <div class="cart-header">
+            <h1 class="cart-title">
+                Carrito
+                <span class="product-count">({{productsInCart.length}} productos)</span>
+            </h1>
+            <a (click)="clearCart()" class="clear-cart">Limpiar carrito</a>
+        </div>
+
+        <div class="cart-headers">
+            <span>Producto</span>
+            <span>Cantidad</span>
+            <span>Precio</span>
+            <span></span>
+        </div>
+        @for (item of productsInCart; track item.id) {
+        <div class="product-item">
+            <div class="product-info">
+                <div class="product-image">
+                    <img [src]="item.imageUrl" alt="" srcset="">
+                </div>
+                <div class="product-details">
+                    <h3>{{item.nombre}}</h3>
+                    <p>PEN S/{{item.precio}}</p>
+                </div>
+            </div>
+            <div class="quantity-controls">
+                <button class="quantity-btn" (click)="decrementProductQuantity(item.id)">−</button>
+                <span class="quantity-display">{{item.quantity}}</span>
+                <button class="quantity-btn" (click)="incrementProductQuantity(item.id)">+</button>
+            </div>
+            <div class="product-price">S/{{item.precio * item.quantity}}</div>
+            <button class="remove-btn" (click)="removeFromCart(item.id)">×</button>
+        </div>
+        }
+    </div>
+
+    <div class="checkout-section">
+        <div class="promo-code">
+            <h3>Promo code</h3>
+            <div class="promo-input-group">
+                <input type="text" class="promo-input" placeholder="Type here...">
+                <button class="apply-btn">Apply</button>
+            </div>
+        </div>
+
+        <div class="order-summary">
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="subtotal">S/{{getTotalPrice()}}</span>
+            </div>
+            <div class="summary-row">
+                <span>Descuento</span>
+                <span id="discount">-S/0.00</span>
+            </div>
+            <div class="summary-row total-row">
+                <span>Total</span>
+                <span id="total">S/{{getTotalPrice()}}</span>
+            </div>
+            <button class="checkout-btn">Continue to checkout</button>
+        </div>
+    </div>
+</div>

@@ -50,3 +50,15 @@ a {
     margin: auto;
     text-align: center;
 }
+
+.text-bold{
+    font-weight: bold;
+}
+
+.text-secondary{
+    color: #5f5f5f;
+}
+
+.d-flex{
+    display: flex;
+}

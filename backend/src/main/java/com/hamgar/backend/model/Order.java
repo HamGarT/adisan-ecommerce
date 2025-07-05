@@ -19,6 +19,10 @@ public class Order {
     private UUID uuid;
     private BigDecimal precioTotal;
     private Instant createdAt;
+    private String status;
+    private String ciudad;
+    private String provincia;
+    private String direccion;
     @ManyToOne
     private Usuario usuario;
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)

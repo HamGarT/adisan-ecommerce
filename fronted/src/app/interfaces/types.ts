@@ -5,6 +5,7 @@ export interface Producto{
     stock: number,
     imageUrl: string,
     categoria?: Categoria
+    quantity: number
 
 }
 
