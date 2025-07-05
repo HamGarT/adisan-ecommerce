@@ -44,4 +44,8 @@
 
     </div>
 </section>
-<app-product-card *ngIf="showCard" (cardClosed)="toggleCard()" [product]="selectedProduct"></app-product-card>
+<app-product-card 
+    *ngIf="showCard" 
+    (cardClosed)="toggleCard()" 
+    [product]="selectedProduct">
+</app-product-card>

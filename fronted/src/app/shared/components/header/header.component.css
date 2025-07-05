@@ -30,9 +30,33 @@
 
 .user-options .option-item {
     margin-left: 20px;
+    background-color: rgba(238, 238, 238, 0.774);
+    border-radius: 50%;
+    width: 39px;
+    height: 39px;
+    display: flex;
+    padding: 2px;
 }
 
 .user-options .option-item svg{
     width: 25px;
     height: 25px;
+    margin: auto;
+}
+
+.user-options  .loged-user{
+    border-radius: 50%;
+    border: 4px  #00000000;
+    width: 40px;
+    height: 40px;
+    z-index: 9999;
+    text-align: center;
+    background-color: rgba(238, 238, 238, 0.63);
+    display: flex;
+    padding: 2px;
+}
+
+.loged-user div{
+    margin: auto;
+    letter-spacing: 1.5px;
 }

@@ -1,7 +1,7 @@
 import { NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UsuarioService } from '../../../services/usuario.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/app.state';
@@ -19,7 +19,8 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private usuarioService: UsuarioService) {
+    private usuarioService: UsuarioService,
+    private router: Router) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email, this.noWhitespaceValidator]],
       password: ['', [Validators.required, this.noWhitespaceValidator]]
@@ -32,7 +33,8 @@ export class LoginComponent {
     this.usuarioService.login(loginData).subscribe({
       next: (response) => {
         console.log(response);
-        this.store.dispatch(authActions.loginSuccess({user: response}))
+        this.store.dispatch(authActions.loginSuccess({user: response}));
+        this.router.navigate(['/shop'])
       },
 
       error: (error) => {

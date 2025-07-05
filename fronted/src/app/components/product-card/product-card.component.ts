@@ -39,6 +39,7 @@ export class ProductCardComponent {
     if (this.product) {
       this.product.quantity = this.quantity;
       this.store.dispatch(addToCart({ product: this.product }));
+      this.cardClosed.emit();
       // this.store.select(selectCartState).subscribe(cartItems => {
       //   console.log('Current cart items:', cartItems);
       // });

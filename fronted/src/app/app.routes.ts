@@ -4,11 +4,14 @@ import { ShopComponent } from './pages/shop/shop.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
+import { UserComponent } from './pages/user/user.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'shop', component: ShopComponent },
     { path: 'cart', component: CartComponent },
     { path: 'auth/login', component: LoginComponent },
-    { path: 'auth/register', component: RegisterComponent}
+    { path: 'auth/register', component: RegisterComponent},
+    { path: 'about-us', component: HomeComponent},
+    { path: 'user', component: UserComponent}
 ];

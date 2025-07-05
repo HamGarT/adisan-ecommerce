@@ -38,11 +38,23 @@
 
     <div class="checkout-section">
         <div class="promo-code">
-            <h3>Promo code</h3>
-            <div class="promo-input-group">
-                <input type="text" class="promo-input" placeholder="Type here...">
-                <button class="apply-btn">Apply</button>
-            </div>
+            <h3>Información de Envío</h3>
+            <form class="promo-input-group">
+                <label for="nombre">Departamento</label>
+                <input type="text" class="promo-input" disabled value="Cajamarca">
+                <label for="nombre">Provincia</label>
+                <select name="" id="">
+                    <option value="Cajamarca">Cajamarca</option>
+                    <option value="Jaen">Jaén</option>
+                    <option value="Cajabamba">Cajabamba</option>
+                    <option value="Chota">Chota</option>
+                </select>
+                <label for="nombre">Dirección</label>
+                <input type="text" class="promo-input" placeholder="Dirección de envio">
+                <p class="description">
+                    Verifica que la dirección ingresada sea válida para evitar problemas con la entrega.
+                </p>
+            </form>
         </div>
 
         <div class="order-summary">
@@ -58,7 +70,7 @@
                 <span>Total</span>
                 <span id="total">S/{{getTotalPrice()}}</span>
             </div>
-            <button class="checkout-btn">Continue to checkout</button>
+            <button class="checkout-btn">Continuar orden</button>
         </div>
     </div>
 </div>

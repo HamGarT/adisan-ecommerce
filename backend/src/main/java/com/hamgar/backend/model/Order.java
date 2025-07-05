@@ -16,7 +16,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "publicId", unique = true)
-    private UUID uuid;
+    private UUID publicId;
     private BigDecimal precioTotal;
     private Instant createdAt;
     private String status;
