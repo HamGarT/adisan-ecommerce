@@ -39,18 +39,18 @@
     <div class="checkout-section">
         <div class="promo-code">
             <h3>Información de Envío</h3>
-            <form class="promo-input-group">
-                <label for="nombre">Departamento</label>
-                <input type="text" class="promo-input" disabled value="Cajamarca">
-                <label for="nombre">Provincia</label>
-                <select name="" id="">
+            <form class="promo-input-group" [formGroup]="infoOrderForm">
+                <label for="departamento">Departamento</label>
+                <input id="departamento" formControlName="departamento" type="text" class="promo-input"  value="Cajamarca">
+                <label for="provincia">Provincia</label>
+                <select id="provincia" formControlName="provincia">
                     <option value="Cajamarca">Cajamarca</option>
                     <option value="Jaen">Jaén</option>
                     <option value="Cajabamba">Cajabamba</option>
                     <option value="Chota">Chota</option>
                 </select>
-                <label for="nombre">Dirección</label>
-                <input type="text" class="promo-input" placeholder="Dirección de envio">
+                <label for="direccion">Dirección</label>
+                <input id="direccion" formControlName="direccion" type="text" class="promo-input" placeholder="Dirección de envio">
                 <p class="description">
                     Verifica que la dirección ingresada sea válida para evitar problemas con la entrega.
                 </p>
@@ -70,7 +70,7 @@
                 <span>Total</span>
                 <span id="total">S/{{getTotalPrice()}}</span>
             </div>
-            <button class="checkout-btn">Continuar orden</button>
+            <button class="checkout-btn" (click)="createOrderFromCartProducts()">Continuar orden</button>
         </div>
     </div>
 </div>

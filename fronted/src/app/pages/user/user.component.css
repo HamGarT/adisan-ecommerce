@@ -20,7 +20,7 @@
 }
 
 .orders-history{
-    max-width: 400px;
+    max-width: 500px;
     margin-right: 20px;
     width: 100%;
 }
@@ -35,6 +35,7 @@
     margin-top: 30px;
     padding-bottom: 10px;
     border-bottom: solid 2px #969696a9;
+    cursor: pointer;
 }
 .order-item > div{
     display: flex;

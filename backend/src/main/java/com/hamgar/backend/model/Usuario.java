@@ -29,6 +29,7 @@ public class Usuario {
     private String password;
     private String email;
     private String phone;
+    @Enumerated(EnumType.STRING)
     private UserRole role;
     @OneToMany(mappedBy = "usuario")
     private List<Order> pedidos;

@@ -27,8 +27,39 @@ export interface Usuario{
     role? : string,
 }
 
+export interface Orden{
+    id?: string,
+    departamento: string,
+    provincia: string,
+    direccion : string,
+    status: string,
+    createdAt: Date,
+    precioTotal: number,
+    totalItems: number
+
+}
+
+export interface OrdenItem{
+    id: string
+    cantidad: number
+    producto: Producto
+}
+
+
+
 export interface AuthentificationRequest{
     email: string,
     password: string
 }
 
+export interface productForOrder{
+    id: string,
+    cantidad: number,
+}
+export interface OrderRequest{
+    userId : string,
+    departamento: string,
+    provincia: string,
+    direccion : string,
+    orderItems: productForOrder[]
+}

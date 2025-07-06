@@ -39,7 +39,6 @@ export class ProductsComponent implements OnInit {
     this.productService.getAll().subscribe({ //an observable return a asyncronous response .suscribe() it susbcribes to that observable so we can recieve the asyncronous response when it arrive
       next: (data) => {
         this.productos = data;
-        console.log(data)
       },
       error: (err) => {
         console.error('Failed to load products', err);

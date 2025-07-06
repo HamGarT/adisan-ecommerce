@@ -13,3 +13,21 @@ export interface Categoria{
     id: number,
     nombre: string
 }
+
+export interface Order{
+    id?: string,
+    departamento: string,
+    provincia: string,
+    direccion : string,
+    status: string,
+    createdAt: Date,
+    precioTotal: number,
+    totalItems: number
+
+}
+
+export interface OrderItem{
+    id: string
+    cantidad: number
+    producto: Producto
+}

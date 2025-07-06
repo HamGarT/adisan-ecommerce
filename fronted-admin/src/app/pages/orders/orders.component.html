@@ -22,9 +22,11 @@
                         <span class="text-secondary">7 items</span>
                     </div>
                 </div>
-                <div class="order-item">
+
+                @for (item of orders; track $index) {
+                <div class="order-item" (click)="loadOrderItems(item)">
                     <div class="order-header">
-                        <span class="order-id text-bold">#839291t2</span>
+                        <span class="order-id text-bold">#{{item.id}}</span>
                         <span class="order-status">Pendiente</span>
                     </div>
                     <div class="order-item-details">
@@ -35,44 +37,34 @@
                         <span class="text-secondary">7 items</span>
                     </div>
                 </div>
+                }
+
             </div>
         </div>
 
         <div class="order-details">
             <div class="order-details-header">
-                <h2>Orden #839291t2<span class="text-secondary">(4)</span></h2>
+                <h2>Orden #{{orderSelected?.id}}<span class="text-secondary">({{orderSelected?.totalItems}})</span></h2>
             </div>
             <div class="order-details-content">
+                @for (item of orderItems; track $index) {
                 <div class="order-detail-item d-flex">
-                    <img class="product-image" src="https://daywi.com.pe/wp-content/uploads/2023/07/cielo-20l.webp" alt="Imagen de Producto 1">
+                    <img class="product-image" [src]="item.producto.imageUrl"
+                        alt="Imagen de Producto 1">
                     <div class="product-info">
                         <div class="product-header text-bold">
-                            <span class="product-name">Producto 1</span>
-                            <span class="product-price">PEN S/4.00</span>
+                            <span class="product-name">{{item.producto.nombre}}</span>
+                            <span class="product-price">PEN S/{{item.cantidad * item.producto.precio}}</span>
                         </div>
                         <div class="product-description">
                             Producto 1 de buena calidad
                         </div>
                         <div class="total-items">
-                            <span class="text-secondary">7 items</span>
+                            <span class="text-secondary">{{item.cantidad}} items</span>
                         </div>
                     </div>
                 </div>
-                <div class="order-detail-item d-flex">
-                    <img class="product-image" src="https://daywi.com.pe/wp-content/uploads/2023/07/SPORADE-MANDARINA-PET-NO-RETORNABLE-500-ML-X-12.webp" alt="Imagen de Producto 1">
-                    <div class="product-info">
-                        <div class="product-header text-bold">
-                            <span class="product-name">Producto 1</span>
-                            <span class="product-price">PEN S/4.00</span>
-                        </div>
-                        <div class="product-description">
-                            Producto 1 de buena calidad
-                        </div>
-                        <div class="total-items">
-                            <span class="text-secondary">7 items</span>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
