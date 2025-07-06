@@ -78,7 +78,9 @@ export class CartComponent implements OnInit {
             }
             this.orderService.create(orderRequest).subscribe({
               next: () => {
-                console.log("The order was entered successfully")
+                console.log("The order was entered successfully");
+                alert("Tu orden se registro correctamente");
+                this.store.dispatch(clearCart());
               }
             });
           } else {

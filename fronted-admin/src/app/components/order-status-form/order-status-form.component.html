@@ -1,0 +1,25 @@
+<div class="overlay" (click)="onOverlayClick($event)">
+    <div class="product-form-container">
+        <div class="form-card">
+            <h2 class="form-title">Editar Orden Status</h2>
+            <form [formGroup]="orderStatusForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="status" class="form-label">Estado de Orden *</label>
+                    <select class="form-select" formControlName="status" id="status">
+                        <option value="pendiente">Pendiente</option>
+                        <option value="entregado">Entregado</option>
+                        <option value="cancelado">Cancelado</option>
+                    </select>
+                    <div *ngIf="status?.valid && status?.touched" class="error-message">
+                        <small *ngIf="status?.errors?.['required']">Selecciona un estado</small>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        Actualizar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

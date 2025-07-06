@@ -17,6 +17,7 @@ public class ProductoResponse {
     private String nombre;
     private BigDecimal precio;
     private Integer stock;
+    private String description;
     private String imageUrl;
     @JsonIgnoreProperties({"productos"})
     private Categoria categoria;
@@ -28,6 +29,7 @@ public class ProductoResponse {
                  .precio(producto.getPrecio())
                  .stock(producto.getStock())
                  .precio(producto.getPrecio())
+                 .description(producto.getDescripcion())
                  .categoria(producto.getCategoria())
                  .build();
 

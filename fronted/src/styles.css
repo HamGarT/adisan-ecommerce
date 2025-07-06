@@ -19,3 +19,48 @@ a {
 .d-flex{
     display: flex;
 }
+
+.badge {
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.badge-pending {
+    background-color: #ffc10731;
+    color: #ffa807;
+    padding: 3px 7px;
+    font-size: 14px;
+}
+
+.badge-success{
+    background-color: #1b944a31;
+    color: #257446;
+    padding: 3px 7px;
+    font-size: 14px;
+}
+
+.badge-canceled{
+    background-color: #942d1b31;
+    color: #dd2e3d;
+    padding: 3px 7px;
+    font-size: 14px;
+}
+
+.badge-available {
+    background-color: #1b944a31;
+    color: #257446;
+    padding: 5px 10px;
+}
+
+.badge-offline {
+    background-color: #55555531;
+    color: #353535;
+    padding: 5px 10px;
+}
+
+.badge-occupied {
+    background-color: #6e1b9431;
+    color: #5e2574;
+    padding: 5px 10px;
+}

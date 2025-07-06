@@ -4,6 +4,7 @@ import com.hamgar.backend.dto.request.CreateOrderRequest;
 import com.hamgar.backend.dto.response.OrderAdminResponse;
 import com.hamgar.backend.dto.response.OrderItemResponse;
 import com.hamgar.backend.dto.response.OrderResponse;
+import com.hamgar.backend.enums.OrderStatus;
 import com.hamgar.backend.model.Order;
 
 import java.util.List;
@@ -13,5 +14,6 @@ public interface IOrderService {
     Order create(CreateOrderRequest order);
     List<OrderResponse> getAllUserOrder(UUID userId);
     List<OrderAdminResponse> getAllOrders();
+    void updateOrderStatus(UUID orderId, OrderStatus status);
 
 }

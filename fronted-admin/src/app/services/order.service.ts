@@ -20,4 +20,8 @@ export class OrderService {
   getOrderItems(orderId: string): Observable<OrderItem[]>{
     return this.http.get<OrderItem[]>(`${this.orderItemBaseUrl}/order/${orderId}`);
   }
+
+  updateOrderStatus(orderId: string, orderStatus: string):Observable<void>{
+    return this.http.put<void>(`${this.baseUrl}/update/${orderId}`, {status: orderStatus});
+  }
 }

@@ -1,55 +1,64 @@
-.section-header{
+.section-header {
     font-size: 35px;
 }
 
-.orders-layout{
+.orders-layout {
     display: flex;
 }
+
 .orders-history,
-.order-details{
+.order-details {
     background-color: #ffffff;
     height: 90vh;
     border-radius: 10px;
     padding: 5px 20px;
 }
 
-.orders-history{
+.orders-history {
     max-width: 500px;
     margin-right: 20px;
     width: 100%;
 }
 
-.order-details{
+.order-details {
     width: 100%;
     margin-right: 20px;
 }
-.order-item{
+
+.order-item {
     font-weight: 500;
     font-size: 16px;
     margin-top: 30px;
     padding-bottom: 10px;
     border-bottom: solid 2px #969696a9;
+    cursor: pointer;
 }
-.order-item > div{
+
+.order-item>div {
     display: flex;
     justify-content: space-between;
 }
-.order-item-details{
+
+.order-item-details {
     margin: 2px 0px;
 }
-.order-detail-item{
+
+.order-detail-item {
     margin-top: 30px;
     font-size: 17px;
 }
-.order-detail-item .product-description{
+
+.order-detail-item .product-description {
     margin: 3px 0px
 }
-.product-info{
+
+.product-info {
     width: 100%;
     padding-bottom: 10px;
     border-bottom: solid 2px #969696a9;
 }
-.product-info > div{
+
+.product-info>div {
     display: flex;
     justify-content: space-between;
 }
@@ -59,5 +68,69 @@
     height: 100px;
     object-fit: cover;
     border-radius: 6px;
-} 
+}
 
+
+
+
+.user-info-section {
+    padding: 24px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.info-section {
+    margin-bottom: 32px;
+}
+
+.info-section:last-child {
+    margin-bottom: 0;
+}
+
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e2e8f0;
+    position: relative;
+}
+
+.section-title::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    height: 2px;
+    width: 60px;
+    background: #000;
+    border-radius: 1px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #4a5568;
+    text-transform: capitalize;
+}
+
+.info-value {
+    font-size: 1rem;
+    color: #2d3748;
+    font-weight: 500;
+    padding: 6px 0;
+    border-bottom: 1px solid #f1f5f9;
+}

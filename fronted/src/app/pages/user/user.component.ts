@@ -16,12 +16,13 @@ import { CommonModule } from '@angular/common';
 export class UserComponent implements OnInit {
   userOrders: Orden[] | null = null;
   userItemsOrder: OrdenItem[] | null = null;
+  selectedOrder: Orden | null = null;
 
 
   constructor(
     private orderService: OrderService,
     private store: Store<AppState>
-  ) { 
+  ) {
 
   }
 
@@ -31,7 +32,7 @@ export class UserComponent implements OnInit {
         console.log(userId)
         if (userId) {
           this.orderService.getAllUserOrder(userId).subscribe({
-            next: (orders)=>{
+            next: (orders) => {
               this.userOrders = orders;
             }
           })
@@ -40,12 +41,15 @@ export class UserComponent implements OnInit {
     })
   }
 
-  loadOrderItems(orderId: string){
-    this.orderService.getOrderItems(orderId).subscribe({
-      next: (itemOrders)=>{
-        this.userItemsOrder = itemOrders
-        console.log(this.userItemsOrder)
-      }
-    })
+  loadOrderItems(order: Orden) {
+    this.selectedOrder = order;
+    if (order) {
+      this.orderService.getOrderItems(order.id || '').subscribe({
+        next: (itemOrders) => {
+          this.userItemsOrder = itemOrders
+          console.log(this.userItemsOrder)
+        }
+      })
+    }
   }
 }

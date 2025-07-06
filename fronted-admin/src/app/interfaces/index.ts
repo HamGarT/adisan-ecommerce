@@ -1,3 +1,14 @@
+export interface Usuario{
+    id? : string,
+    dni: string,
+    nombres: string,
+    apellidos: string,
+    fechaNacimiento: Date,
+    email : string,
+    phone? : string,
+    role? : string,
+}
+
 export interface Producto{
     id: string ,
     nombre: string,
@@ -22,7 +33,8 @@ export interface Order{
     status: string,
     createdAt: Date,
     precioTotal: number,
-    totalItems: number
+    totalItems: number,
+    usuario: Usuario
 
 }
 

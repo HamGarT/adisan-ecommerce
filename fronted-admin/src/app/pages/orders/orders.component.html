@@ -9,32 +9,26 @@
                 <h2>Historial de Órdenes</h2>
             </div>
             <div class="orders-history-list">
-                <div class="order-item">
-                    <div class="order-header">
-                        <span class="order-id text-bold">#839291t2</span>
-                        <span class="order-status">Pendiente</span>
-                    </div>
-                    <div class="order-item-details">
-                        <span class="order-amount text-bold">PEN S/43</span>
-                        <span class="order-date text-secondary">May 1 at 7:00PM</span>
-                    </div>
-                    <div class="total-items">
-                        <span class="text-secondary">7 items</span>
-                    </div>
-                </div>
 
                 @for (item of orders; track $index) {
                 <div class="order-item" (click)="loadOrderItems(item)">
                     <div class="order-header">
                         <span class="order-id text-bold">#{{item.id}}</span>
-                        <span class="order-status">Pendiente</span>
+                        <span [ngClass]="{
+                            'badge-success': item.status === 'entregado',
+                            'badge-pending': item.status === 'pendiente',
+                            'badge-canceled': item.status === 'cancelado'}" class="order-status badge">
+                            {{ item.status }}
+                        </span>
                     </div>
                     <div class="order-item-details">
-                        <span class="order-amount text-bold">PEN S/43</span>
-                        <span class="order-date text-secondary">May 1 at 7:00PM</span>
+                        <span class="order-amount text-bold">PEN S/{{item.precioTotal}}</span>
+                        <span class="order-date text-secondary">{{ item.createdAt | date: 'MMM d, y \'at\'
+                            h:mma'}}</span>
                     </div>
                     <div class="total-items">
-                        <span class="text-secondary">7 items</span>
+                        <span class="text-secondary">{{item.totalItems}} items</span>
+                        <button (click)="onEditOrderStatus(item);  $event.stopPropagation()">Editar</button>
                     </div>
                 </div>
                 }
@@ -46,11 +40,47 @@
             <div class="order-details-header">
                 <h2>Orden #{{orderSelected?.id}}<span class="text-secondary">({{orderSelected?.totalItems}})</span></h2>
             </div>
+            <div class="user-info-section">
+                <div class="info-section">
+                    <h3 class="section-title">Información de usuario</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label class="info-label">Nombres:</label>
+                            <div class="info-value">{{orderSelected?.usuario?.nombres}}</div>
+                        </div>
+                        <div class="info-item">
+                            <label class="info-label">Apellidos:</label>
+                            <div class="info-value">{{orderSelected?.usuario?.apellidos}}</div>
+                        </div>
+                        <div class="info-item">
+                            <label class="info-label">Email:</label>
+                            <div class="info-value">{{orderSelected?.usuario?.email}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h3 class="section-title">Información de envío</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label class="info-label">Departamento:</label>
+                            <div class="info-value">{{orderSelected?.departamento}}</div>
+                        </div>
+                        <div class="info-item">
+                            <label class="info-label">Provincia:</label>
+                            <div class="info-value">{{orderSelected?.provincia}}</div>
+                        </div>
+                        <div class="info-item">
+                            <label class="info-label">Dirección:</label>
+                            <div class="info-value">{{orderSelected?.direccion}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="order-details-content">
                 @for (item of orderItems; track $index) {
                 <div class="order-detail-item d-flex">
-                    <img class="product-image" [src]="item.producto.imageUrl"
-                        alt="Imagen de Producto 1">
+                    <img class="product-image" [src]="item.producto.imageUrl" alt="Imagen de Producto 1">
                     <div class="product-info">
                         <div class="product-header text-bold">
                             <span class="product-name">{{item.producto.nombre}}</span>
@@ -69,3 +99,6 @@
         </div>
     </div>
 </section>
+<app-order-status-form *ngIf="showForm" [orderToEdit]="orderSelected" (formClosed)="toggleForm()"
+    (orderStatusUpdated)="onOrderUpdated()">
+</app-order-status-form>

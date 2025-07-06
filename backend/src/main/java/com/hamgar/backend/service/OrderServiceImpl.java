@@ -120,5 +120,16 @@ public class OrderServiceImpl implements  IOrderService {
         return orderAdminResponses;
     }
 
+    @Override
+    public void updateOrderStatus(UUID orderId, OrderStatus status) {
+        Order order = orderRepository.findByPublicId(orderId);
+
+        if (order == null) {
+            throw new EntityNotFoundException("Order not found with id: " + orderId);
+        }
+        order.setStatus(status);
+        orderRepository.save(order);
+    }
+
 
 }

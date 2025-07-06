@@ -173,6 +173,7 @@ export class ProductFormComponent implements OnInit, OnChanges {
         name: this.productToEdit.nombre,
         price: this.productToEdit.precio,
         stock: this.productToEdit.stock,
+        description: this.productToEdit.description,
         category: this.productToEdit.categoria?.id || this.productToEdit.categoria
       });
 

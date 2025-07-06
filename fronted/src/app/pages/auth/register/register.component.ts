@@ -2,6 +2,7 @@ import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsuarioService } from '../../../services/usuario.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,8 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private usuarioService : UsuarioService) {
+    private usuarioService : UsuarioService,
+    private router: Router) {
     this.registerForm = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(2), this.noWhitespaceValidator]],
       apellido: ['', [Validators.required, Validators.minLength(2), this.noWhitespaceValidator]],
@@ -37,6 +39,7 @@ export class RegisterComponent {
     this.usuarioService.create(usuario).subscribe({
       next: ()=>{
         console.log("User has been successlly created");
+        this.router.navigate(['/auth/login']);
       },
       error: (error) =>{
         console.error('Error creating user: ', error);

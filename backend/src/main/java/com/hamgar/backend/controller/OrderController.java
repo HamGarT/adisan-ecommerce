@@ -1,9 +1,11 @@
 package com.hamgar.backend.controller;
 
 import com.hamgar.backend.dto.request.CreateOrderRequest;
+import com.hamgar.backend.dto.request.OrderStatusUpdateRequest;
 import com.hamgar.backend.dto.response.OrderAdminResponse;
 import com.hamgar.backend.dto.response.OrderItemResponse;
 import com.hamgar.backend.dto.response.OrderResponse;
+import com.hamgar.backend.enums.OrderStatus;
 import com.hamgar.backend.model.Order;
 import com.hamgar.backend.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,15 @@ public class OrderController {
     public ResponseEntity<List<OrderResponse>> getAllUserOrders(@PathVariable("id") UUID userId) {
         List<OrderResponse> orderResponses = orderService.getAllUserOrder(userId);
         return ResponseEntity.ok(orderResponses);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Map<String, String>> updateOrderStatus(@PathVariable("id") UUID orderId, @RequestBody OrderStatusUpdateRequest status) {
+        orderService.updateOrderStatus(orderId, status.getStatus());
+        System.out.println(status);
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Order was updated successfully: " + orderId);
+        return ResponseEntity.ok(response);
     }
 
 
