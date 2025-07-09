@@ -15,18 +15,7 @@
         </ul>
     </div>
     <div class="shop__product-container products-grid">
-        <div class="product-card">
-            <button class="add-button" (click)="toggleCard()">+</button>
-
-            <div class="product-image">
-                <img src="path/to/your/product-image.jpg" alt="220V Energy Drink" />
-            </div>
-
-            <div class="product-info">
-                <h3 class="product-title">220V 450 ML X 12 Unid.</h3>
-                <p class="product-price">S/19.00</p>
-            </div>
-        </div>
+        
         @for (item of products; track $index) {
         <div class="product-card">
             <button class="add-button" (click)="toggleCard(item)">+</button>
